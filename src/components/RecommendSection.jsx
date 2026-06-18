@@ -63,9 +63,25 @@ const RecommendSection = ({ recommendations }) => {
             <ChevronLeftIcon />
           </button>
 
-          {/* 가로 스크롤 컨테이너 — Partial Peek: 마지막 카드 ~25% 노출 */}
+          {/* 가로 스크롤 컨테이너 — Partial Peek: 다음 카드 ~25% 노출 */}
           <style>{`
             .recommend-scroll::-webkit-scrollbar { display: none; }
+            /* Partial Peek 반응형 카드 너비 */
+            .peek-card {
+              flex-shrink: 0;
+              /* 데스크톱: 3개 + 25% 노출 */
+              width: calc((100% - 48px) / 3.25);
+              min-width: 220px;
+              max-width: 300px;
+            }
+            @media (max-width: 1199px) {
+              /* 태블릿: 2개 + 25% */
+              .peek-card { width: calc((100% - 32px) / 2.25); max-width: 360px; }
+            }
+            @media (max-width: 767px) {
+              /* 모바일: 1개 + 25% */
+              .peek-card { width: calc((100% - 16px) / 1.25); max-width: 100%; }
+            }
           `}</style>
           <div
             ref={scrollRef}
@@ -85,10 +101,8 @@ const RecommendSection = ({ recommendations }) => {
               <div
                 key={id}
                 role="listitem"
+                className="peek-card"
                 style={{
-                  flexShrink: 0,
-                  /* 3.25개 노출 → 4번째 카드 25% peek 효과 */
-                  width: 'clamp(220px, calc((100% - 48px) / 3.25), 295px)',
                   scrollSnapAlign: 'start',
                   background: 'var(--color-surface)',
                   borderRadius: 'var(--radius-lg)',

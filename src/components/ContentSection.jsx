@@ -49,12 +49,12 @@ const ContentCard = ({ content, onPlay }) => {
         loading="lazy"
       />
 
-      {/* 하단 그라데이션 — 타이틀 가독성 항상 확보 */}
+      {/* 하단 그라데이션 — to top 방향, 타이틀 가독성 완벽 확보 */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.7) 72%, rgba(0,0,0,0.92) 100%)',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)',
           pointerEvents: 'none',
         }}
         aria-hidden="true"
@@ -65,22 +65,25 @@ const ContentCard = ({ content, onPlay }) => {
         style={{
           position: 'absolute',
           inset: 0,
-          padding: '16px',
+          padding: '14px 14px 16px',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          background: hovered ? 'rgba(0,0,0,0.18)' : 'transparent',
+          alignItems: 'flex-start',
+          background: hovered ? 'rgba(0,0,0,0.15)' : 'transparent',
           transition: 'background 0.35s ease',
         }}
       >
-        {/* 항상 표시 — 타이틀 */}
+        {/* 항상 표시 — 타이틀 (하단 좌측 정렬) */}
         <h3
           style={{
-            fontSize: '0.95rem',
+            fontSize: '0.93rem',
             fontWeight: 700,
             marginBottom: hovered ? '8px' : '0',
             transition: 'margin 0.3s ease',
             lineHeight: 1.3,
+            textAlign: 'left',
+            width: '100%',
           }}
         >
           {content.title}

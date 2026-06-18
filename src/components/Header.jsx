@@ -102,12 +102,14 @@ const Header = () => {
           alignItems: 'center',
           justifyContent: 'space-between',
           padding: '0 5%',
+          /* 글래스모피즘 — 항상 blur 유지, 스크롤 시 더 불투명 */
           background: scrolled
-            ? 'rgba(15, 15, 15, 0.95)'
-            : 'linear-gradient(180deg, rgba(0,0,0,0.75) 0%, transparent 100%)',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled ? '1px solid rgba(255,255,255,0.07)' : 'none',
-          transition: 'all 0.3s ease',
+            ? 'rgba(14, 14, 14, 0.88)'
+            : 'rgba(20, 20, 20, 0.45)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          transition: 'background 0.35s ease',
         }}
       >
         {/* 로고 */}
