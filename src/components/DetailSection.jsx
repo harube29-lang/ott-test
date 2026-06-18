@@ -41,8 +41,9 @@ const DetailSection = ({ contents }) => {
           border: '1px solid rgba(229,9,20,0.2)',
         }}
       >
+        {/* Editor's Pick 배경 이미지 — blur 없음, object-fit cover */}
         <img
-          src={featured.poster_url}
+          src={`${import.meta.env.BASE_URL}seoul-night.png`}
           alt=""
           aria-hidden="true"
           style={{
@@ -50,18 +51,17 @@ const DetailSection = ({ contents }) => {
             right: 0,
             top: 0,
             height: '100%',
-            width: '60%',
+            width: '65%',
             objectFit: 'cover',
-            objectPosition: 'center top',
-            opacity: 1,
+            objectPosition: 'center',
           }}
         />
-        {/* 좌→우 부드러운 페이드 오버레이 */}
+        {/* 좌→우 고급 페이드 — 텍스트 영역과 이미지가 자연스럽게 연결 */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, rgba(15,5,5,0.98) 0%, rgba(15,5,5,0.88) 30%, rgba(15,5,5,0.55) 55%, rgba(15,5,5,0.1) 78%, transparent 100%)',
+            background: 'linear-gradient(90deg, rgba(10,3,3,1) 0%, rgba(10,3,3,0.95) 28%, rgba(10,3,3,0.7) 48%, rgba(10,3,3,0.25) 68%, transparent 100%)',
           }}
           aria-hidden="true"
         />

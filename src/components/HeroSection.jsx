@@ -41,9 +41,9 @@ const HeroSection = ({ content }) => {
         }}
         aria-label="대표 콘텐츠 히어로 배너"
       >
-        {/* 배경 이미지 */}
+        {/* 배경 이미지 — blur 없음, 원본 선명도 유지 */}
         <img
-          src={content.poster_url}
+          src={`${import.meta.env.BASE_URL}seoul-night.png`}
           alt={content.title}
           style={{
             position: 'absolute',
@@ -51,29 +51,28 @@ const HeroSection = ({ content }) => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
-            objectPosition: 'center top',
-            filter: 'brightness(0.55)',
+            objectPosition: 'center',
           }}
         />
 
-        {/* gradient overlay — 하단 페이드 */}
+        {/* 하단 그라데이션 — 섹션 경계와 자연스럽게 연결 */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(180deg, transparent 30%, rgba(15,15,15,0.6) 65%, #0F0F0F 100%)',
+              'linear-gradient(180deg, rgba(0,0,0,0.08) 0%, transparent 30%, rgba(15,15,15,0.55) 68%, #0F0F0F 100%)',
           }}
           aria-hidden="true"
         />
 
-        {/* 좌측 세로 gradient overlay — glassmorphism */}
+        {/* 좌측 그라데이션 — 텍스트 가독성, 오른쪽으로 자연스럽게 투명 */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
             background:
-              'linear-gradient(90deg, rgba(15,15,15,0.9) 0%, rgba(15,15,15,0.4) 50%, transparent 100%)',
+              'linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.15) 62%, transparent 85%)',
           }}
           aria-hidden="true"
         />
