@@ -63,9 +63,13 @@ const RecommendSection = ({ recommendations }) => {
             <ChevronLeftIcon />
           </button>
 
-          {/* 가로 스크롤 컨테이너 */}
+          {/* 가로 스크롤 컨테이너 — Partial Peek: 마지막 카드 ~25% 노출 */}
+          <style>{`
+            .recommend-scroll::-webkit-scrollbar { display: none; }
+          `}</style>
           <div
             ref={scrollRef}
+            className="recommend-scroll"
             style={{
               display: 'flex',
               gap: '16px',
@@ -77,17 +81,14 @@ const RecommendSection = ({ recommendations }) => {
             role="list"
             aria-label="추천 콘텐츠 목록"
           >
-            <style>{`
-              #recommend [ref]::-webkit-scrollbar { display: none; }
-            `}</style>
-
             {recommendations.map(({ id, reason, content }) => (
               <div
                 key={id}
                 role="listitem"
                 style={{
                   flexShrink: 0,
-                  width: '280px',
+                  /* 3.25개 노출 → 4번째 카드 25% peek 효과 */
+                  width: 'clamp(220px, calc((100% - 48px) / 3.25), 295px)',
                   scrollSnapAlign: 'start',
                   background: 'var(--color-surface)',
                   borderRadius: 'var(--radius-lg)',

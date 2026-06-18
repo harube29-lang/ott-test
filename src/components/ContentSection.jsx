@@ -22,16 +22,19 @@ const ContentCard = ({ content, onPlay }) => {
         borderRadius: 'var(--radius)',
         overflow: 'hidden',
         cursor: 'pointer',
+        /* 네온 글로우 — hover 시 레드 glow 번짐 */
         transform: hovered ? 'scale(1.06)' : 'scale(1)',
-        transition: 'transform 0.35s ease, box-shadow 0.35s ease, z-index 0s',
-        boxShadow: hovered ? 'var(--shadow-hover)' : 'var(--shadow)',
+        transition: 'transform 0.38s ease, box-shadow 0.38s ease',
+        boxShadow: hovered
+          ? '0 0 0 1px rgba(229,9,20,0.5), 0 8px 32px rgba(229,9,20,0.35), 0 20px 60px rgba(0,0,0,0.7)'
+          : '0 4px 16px rgba(0,0,0,0.5)',
         zIndex: hovered ? 10 : 1,
         aspectRatio: '2/3',
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* 포스터 이미지 */}
+      {/* 포스터 이미지 — hover 시 zoom-in */}
       <img
         src={content.poster_url}
         alt={content.title}
@@ -39,10 +42,22 @@ const ContentCard = ({ content, onPlay }) => {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          filter: hovered ? 'brightness(0.45) blur(1px)' : 'brightness(0.85)',
-          transition: 'filter 0.35s ease',
+          transform: hovered ? 'scale(1.08)' : 'scale(1)',
+          filter: hovered ? 'brightness(0.42)' : 'brightness(0.82)',
+          transition: 'transform 0.5s ease, filter 0.4s ease',
         }}
         loading="lazy"
+      />
+
+      {/* 하단 그라데이션 — 타이틀 가독성 항상 확보 */}
+      <div
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.7) 72%, rgba(0,0,0,0.92) 100%)',
+          pointerEvents: 'none',
+        }}
+        aria-hidden="true"
       />
 
       {/* hover reveal 오버레이 */}
@@ -54,9 +69,7 @@ const ContentCard = ({ content, onPlay }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-end',
-          background: hovered
-            ? 'linear-gradient(180deg, transparent 20%, rgba(0,0,0,0.85) 100%)'
-            : 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%)',
+          background: hovered ? 'rgba(0,0,0,0.18)' : 'transparent',
           transition: 'background 0.35s ease',
         }}
       >
