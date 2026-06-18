@@ -217,8 +217,8 @@ const ContentSection = ({ contents }) => {
         <div
           style={{
             display: 'grid',
-            /* 16:10 카드 기준 — 최소 260px, 최대 4열 */
-            gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+            /* auto-fit: 빈 열 없이 카드가 컨테이너를 꽉 채움 */
+            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '14px',
             marginTop: '24px',
           }}

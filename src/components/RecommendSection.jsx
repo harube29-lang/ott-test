@@ -66,21 +66,20 @@ const RecommendSection = ({ recommendations }) => {
           {/* 가로 스크롤 컨테이너 — Partial Peek: 다음 카드 ~25% 노출 */}
           <style>{`
             .recommend-scroll::-webkit-scrollbar { display: none; }
-            /* Partial Peek 반응형 카드 너비 */
+            /* Partial Peek — max-width 제거해 여백 없이 컨테이너를 꽉 채움 */
             .peek-card {
               flex-shrink: 0;
-              /* 데스크톱: 3개 + 25% 노출 */
-              width: calc((100% - 48px) / 3.25);
-              min-width: 260px;
-              max-width: 340px;
+              /* 데스크톱: 3개 + 20% 노출, max-width 없음 */
+              width: calc((100% - 48px) / 3.2);
+              min-width: 240px;
             }
             @media (max-width: 1199px) {
-              /* 태블릿: 2개 + 25% */
-              .peek-card { width: calc((100% - 32px) / 2.25); max-width: 400px; }
+              /* 태블릿: 2개 + 20% */
+              .peek-card { width: calc((100% - 32px) / 2.2); min-width: 220px; }
             }
             @media (max-width: 767px) {
-              /* 모바일: 1개 + 25% */
-              .peek-card { width: calc((100% - 16px) / 1.25); max-width: 100%; }
+              /* 모바일: 1개 + 20% */
+              .peek-card { width: calc((100% - 16px) / 1.2); min-width: 200px; }
             }
           `}</style>
           <div

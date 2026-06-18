@@ -37,11 +37,13 @@ const DetailSection = ({ contents }) => {
           borderRadius: 'var(--radius-lg)',
           overflow: 'hidden',
           marginBottom: '56px',
-          background: 'linear-gradient(135deg, #1a0505 0%, #2a0808 100%)',
+          /* 배너 높이 — 이미지 구도가 깨지지 않도록 여유롭게 */
+          minHeight: 'clamp(360px, 48vh, 500px)',
+          background: '#0a0305',
           border: '1px solid rgba(229,9,20,0.2)',
         }}
       >
-        {/* Editor's Pick 배경 이미지 — blur 없음, object-fit cover */}
+        {/* Editor's Pick 이미지 — 선명하게, 구도 보존 */}
         <img
           src={`${import.meta.env.BASE_URL}seoul-night.png`}
           alt=""
@@ -51,17 +53,18 @@ const DetailSection = ({ contents }) => {
             right: 0,
             top: 0,
             height: '100%',
-            width: '65%',
+            width: '68%',
             objectFit: 'cover',
-            objectPosition: 'center',
+            /* 상단 25% 기준 — 인물·주요 액션 구도 보존 */
+            objectPosition: 'center 25%',
           }}
         />
-        {/* 좌→우 고급 페이드 — 텍스트 영역과 이미지가 자연스럽게 연결 */}
+        {/* 좌→우 정교한 페이드 — 텍스트 박스와 이미지가 자연스럽게 녹아드는 5단계 블렌딩 */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(90deg, rgba(10,3,3,1) 0%, rgba(10,3,3,0.95) 28%, rgba(10,3,3,0.7) 48%, rgba(10,3,3,0.25) 68%, transparent 100%)',
+            background: 'linear-gradient(90deg, #0a0305 0%, rgba(10,3,5,0.97) 22%, rgba(10,3,5,0.78) 42%, rgba(10,3,5,0.3) 62%, rgba(10,3,5,0.05) 80%, transparent 100%)',
           }}
           aria-hidden="true"
         />

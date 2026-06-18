@@ -101,7 +101,7 @@ ul, ol {
 /* Tablet: 768–1199px */
 @media (max-width: 1199px) {
   .section {
-    padding: 60px 4%;
+    padding: 60px 5%;
   }
 }
 
@@ -123,8 +123,9 @@ ul, ol {
 /* ===========================
    공통 섹션 패딩
 =========================== */
+/* 1400px 이하: 5% 패딩, 초과: 좌우 여백이 자동으로 넓어져 콘텐츠를 1400px 폭으로 고정 */
 .section {
-  padding: 80px 5%;
+  padding: 80px max(5%, calc((100% - 1400px) / 2));
 }
 
 .section-title {
