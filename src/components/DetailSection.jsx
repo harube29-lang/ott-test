@@ -41,14 +41,6 @@ const DetailSection = ({ contents }) => {
           border: '1px solid rgba(229,9,20,0.2)',
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 60%, transparent 100%)',
-          }}
-          aria-hidden="true"
-        />
         <img
           src={featured.poster_url}
           alt=""
@@ -58,18 +50,27 @@ const DetailSection = ({ contents }) => {
             right: 0,
             top: 0,
             height: '100%',
-            width: '45%',
+            width: '60%',
             objectFit: 'cover',
             objectPosition: 'center top',
-            opacity: 0.5,
+            opacity: 1,
           }}
+        />
+        {/* 좌→우 부드러운 페이드 오버레이 */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(90deg, rgba(15,5,5,0.98) 0%, rgba(15,5,5,0.88) 30%, rgba(15,5,5,0.55) 55%, rgba(15,5,5,0.1) 78%, transparent 100%)',
+          }}
+          aria-hidden="true"
         />
         <div
           style={{
             position: 'relative',
             zIndex: 1,
-            padding: 'clamp(32px, 5vw, 56px)',
-            maxWidth: '580px',
+            padding: 'clamp(36px, 5vw, 60px)',
+            maxWidth: '600px',
           }}
         >
           <span
@@ -99,9 +100,9 @@ const DetailSection = ({ contents }) => {
             {featured.title}
           </h2>
           {/* 메타정보 UI */}
-          <div style={{ display: 'flex', gap: '16px', marginBottom: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '20px', marginBottom: '20px', flexWrap: 'wrap' }}>
             {metaItems.map(({ icon, label }) => label && (
-              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem' }}>
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'rgba(255,255,255,0.85)', fontSize: '1rem' }}>
                 {icon}
                 <span>{label}</span>
               </div>
@@ -110,10 +111,10 @@ const DetailSection = ({ contents }) => {
 
           <p
             style={{
-              color: 'rgba(255,255,255,0.8)',
-              fontSize: '0.95rem',
-              lineHeight: 1.7,
-              marginBottom: '28px',
+              color: 'rgba(255,255,255,0.85)',
+              fontSize: '1.05rem',
+              lineHeight: 1.75,
+              marginBottom: '32px',
               wordBreak: 'keep-all',
             }}
           >
@@ -185,8 +186,8 @@ const DetailSection = ({ contents }) => {
               src={item.poster_url}
               alt={item.title}
               style={{
-                width: '72px',
-                height: '100px',
+                width: '88px',
+                height: '120px',
                 objectFit: 'cover',
                 borderRadius: 'var(--radius)',
                 flexShrink: 0,
@@ -194,7 +195,7 @@ const DetailSection = ({ contents }) => {
               loading="lazy"
             />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '8px' }}>
+              <h3 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: '8px' }}>
                 {item.title}
               </h3>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '8px' }}>
@@ -203,7 +204,7 @@ const DetailSection = ({ contents }) => {
                   { label: item.runtime, color: 'var(--color-subtext)' },
                   { label: item.rating, color: 'var(--color-subtext)' },
                 ].map(({ label, color }) => (
-                  <span key={label} style={{ fontSize: '0.75rem', color }}>
+                  <span key={label} style={{ fontSize: '0.875rem', color }}>
                     {label}
                   </span>
                 ))}
@@ -211,8 +212,8 @@ const DetailSection = ({ contents }) => {
               <p
                 style={{
                   color: 'var(--color-subtext)',
-                  fontSize: '0.78rem',
-                  lineHeight: 1.5,
+                  fontSize: '0.875rem',
+                  lineHeight: 1.6,
                   display: '-webkit-box',
                   WebkitLineClamp: 2,
                   WebkitBoxOrient: 'vertical',

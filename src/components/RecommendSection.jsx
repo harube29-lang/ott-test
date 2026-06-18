@@ -13,7 +13,7 @@ const RecommendSection = ({ recommendations }) => {
 
   const scroll = (dir) => {
     if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: dir * 320, behavior: 'smooth' })
+      scrollRef.current.scrollBy({ left: dir * 380, behavior: 'smooth' })
     }
   }
 
@@ -71,12 +71,12 @@ const RecommendSection = ({ recommendations }) => {
               flex-shrink: 0;
               /* 데스크톱: 3개 + 25% 노출 */
               width: calc((100% - 48px) / 3.25);
-              min-width: 220px;
-              max-width: 300px;
+              min-width: 260px;
+              max-width: 340px;
             }
             @media (max-width: 1199px) {
               /* 태블릿: 2개 + 25% */
-              .peek-card { width: calc((100% - 32px) / 2.25); max-width: 360px; }
+              .peek-card { width: calc((100% - 32px) / 2.25); max-width: 400px; }
             }
             @media (max-width: 767px) {
               /* 모바일: 1개 + 25% */
@@ -173,35 +173,36 @@ const RecommendSection = ({ recommendations }) => {
                 </div>
 
                 {/* 카드 내용 */}
-                <div style={{ padding: '16px' }}>
-                  <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '6px' }}>
+                <div style={{ padding: '18px' }}>
+                  <h3 style={{ fontSize: '1.05rem', fontWeight: 700, marginBottom: '8px' }}>
                     {content?.title}
                   </h3>
-                  <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+                  <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
                     <span
                       style={{
                         background: 'rgba(229,9,20,0.15)',
                         color: 'var(--color-primary)',
-                        fontSize: '0.72rem',
+                        fontSize: '0.8rem',
                         fontWeight: 600,
-                        padding: '2px 8px',
+                        padding: '3px 10px',
                         borderRadius: '3px',
                       }}
                     >
                       {content?.genre}
                     </span>
-                    <span style={{ color: 'var(--color-subtext)', fontSize: '0.72rem' }}>
+                    <span style={{ color: 'var(--color-subtext)', fontSize: '0.8rem' }}>
                       {content?.runtime}
                     </span>
                   </div>
                   <p
                     style={{
                       color: 'var(--color-subtext)',
-                      fontSize: '0.8rem',
-                      lineHeight: 1.5,
+                      fontSize: '0.9375rem',
+                      lineHeight: 1.7,
+                      letterSpacing: '0.02em',
                       fontStyle: 'italic',
                       borderLeft: '2px solid var(--color-primary)',
-                      paddingLeft: '10px',
+                      paddingLeft: '12px',
                     }}
                   >
                     {reason}
