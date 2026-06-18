@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import AddIcon from '@mui/icons-material/Add'
+import CheckIcon from '@mui/icons-material/Check'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import TrailerModal from './TrailerModal'
 
 /* ===========================
@@ -10,6 +12,8 @@ import TrailerModal from './TrailerModal'
 =========================== */
 const ContentCard = ({ content, onPlay }) => {
   const [hovered, setHovered] = useState(false)
+  const [liked, setLiked] = useState(false)
+  const [wished, setWished] = useState(false)
 
   return (
     <article
@@ -141,40 +145,50 @@ const ContentCard = ({ content, onPlay }) => {
               <PlayArrowIcon style={{ fontSize: '1.1rem' }} />
             </button>
             <button
+              onClick={(e) => { e.stopPropagation(); setWished(!wished) }}
               style={{
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
+                background: wished ? 'rgba(229,9,20,0.3)' : 'rgba(255,255,255,0.15)',
+                color: wished ? 'var(--color-primary)' : '#fff',
                 borderRadius: '50%',
                 width: '32px',
                 height: '32px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '1px solid rgba(255,255,255,0.4)',
+                border: `1px solid ${wished ? 'var(--color-primary)' : 'rgba(255,255,255,0.4)'}`,
                 flexShrink: 0,
-                transition: 'background 0.2s ease',
+                transition: 'all 0.2s ease',
               }}
-              aria-label="찜하기"
+              aria-label={wished ? '찜 취소' : '찜하기'}
+              aria-pressed={wished}
             >
-              <AddIcon style={{ fontSize: '1.1rem' }} />
+              {wished
+                ? <CheckIcon style={{ fontSize: '1.1rem' }} />
+                : <AddIcon style={{ fontSize: '1.1rem' }} />
+              }
             </button>
             <button
+              onClick={(e) => { e.stopPropagation(); setLiked(!liked) }}
               style={{
-                background: 'rgba(255,255,255,0.15)',
-                color: '#fff',
+                background: liked ? 'rgba(229,9,20,0.3)' : 'rgba(255,255,255,0.15)',
+                color: liked ? 'var(--color-primary)' : '#fff',
                 borderRadius: '50%',
                 width: '32px',
                 height: '32px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                border: '1px solid rgba(255,255,255,0.4)',
+                border: `1px solid ${liked ? 'var(--color-primary)' : 'rgba(255,255,255,0.4)'}`,
                 flexShrink: 0,
-                transition: 'background 0.2s ease',
+                transition: 'all 0.2s ease',
               }}
-              aria-label="좋아요"
+              aria-label={liked ? '좋아요 취소' : '좋아요'}
+              aria-pressed={liked}
             >
-              <ThumbUpAltOutlinedIcon style={{ fontSize: '1rem' }} />
+              {liked
+                ? <ThumbUpAltIcon style={{ fontSize: '1rem' }} />
+                : <ThumbUpAltOutlinedIcon style={{ fontSize: '1rem' }} />
+              }
             </button>
           </div>
         </div>

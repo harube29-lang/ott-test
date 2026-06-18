@@ -165,6 +165,7 @@ const HeroSection = ({ content }) => {
           {/* CTA 버튼 */}
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
             <button
+              onClick={() => setModalOpen(true)}
               style={{
                 display: 'flex',
                 alignItems: 'center',

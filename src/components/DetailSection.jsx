@@ -1,13 +1,16 @@
+import { useState } from 'react'
 import StarIcon from '@mui/icons-material/Star'
 import AccessTimeIcon from '@mui/icons-material/AccessTime'
 import MovieIcon from '@mui/icons-material/Movie'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth'
+import TrailerModal from './TrailerModal'
 
 /* ===========================
    DetailSection — 콘텐츠 상세 소개 + 강조 배너
 =========================== */
 const DetailSection = ({ contents }) => {
-  /* featured 콘텐츠 또는 첫 번째 콘텐츠 */
+  const [modalContent, setModalContent] = useState(null)
+
   const featured = contents?.find((c) => c.featured) || contents?.[0]
 
   if (!featured) return null
@@ -15,14 +18,8 @@ const DetailSection = ({ contents }) => {
   const metaItems = [
     { icon: <MovieIcon style={{ fontSize: '1rem' }} />, label: featured.genre },
     { icon: <AccessTimeIcon style={{ fontSize: '1rem' }} />, label: featured.runtime },
-    {
-      icon: <StarIcon style={{ fontSize: '1rem', color: '#f5c518' }} />,
-      label: featured.rating,
-    },
-    {
-      icon: <CalendarMonthIcon style={{ fontSize: '1rem' }} />,
-      label: featured.release_date?.slice(0, 4),
-    },
+    { icon: <StarIcon style={{ fontSize: '1rem', color: '#f5c518' }} />, label: featured.rating },
+    { icon: <CalendarMonthIcon style={{ fontSize: '1rem' }} />, label: featured.release_date?.slice(0, 4) },
   ]
 
   return (
@@ -101,6 +98,16 @@ const DetailSection = ({ contents }) => {
           >
             {featured.title}
           </h2>
+          {/* 메타정보 UI */}
+          <div style={{ display: 'flex', gap: '16px', marginBottom: '16px', flexWrap: 'wrap' }}>
+            {metaItems.map(({ icon, label }) => label && (
+              <div key={label} style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem' }}>
+                {icon}
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+
           <p
             style={{
               color: 'rgba(255,255,255,0.8)',
@@ -113,6 +120,7 @@ const DetailSection = ({ contents }) => {
             {featured.description}
           </p>
           <button
+            onClick={() => setModalContent(featured)}
             style={{
               background: 'var(--color-primary)',
               color: '#fff',
@@ -217,6 +225,9 @@ const DetailSection = ({ contents }) => {
           </div>
         ))}
       </div>
+      {modalContent && (
+        <TrailerModal content={modalContent} onClose={() => setModalContent(null)} />
+      )}
     </section>
   )
 }
