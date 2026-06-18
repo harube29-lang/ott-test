@@ -76,7 +76,7 @@ const Header = () => {
         aria-label="OTT-TEST 홈으로"
       >
         <img
-          src="/NETFLIX/logo.png"
+          src={`${import.meta.env.BASE_URL}logo.png`}
           alt="OTT-TEST 로고"
           style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
         />

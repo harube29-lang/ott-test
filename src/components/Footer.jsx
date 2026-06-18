@@ -42,7 +42,7 @@ const Footer = () => {
       >
         <div>
           <img
-            src="/NETFLIX/logo.png"
+            src={`${import.meta.env.BASE_URL}logo.png`}
             alt="OTT-TEST"
             style={{ height: '32px', width: 'auto', objectFit: 'contain', marginBottom: '8px' }}
           />
